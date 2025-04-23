@@ -140,7 +140,7 @@ const CurrentWeather = () => {
                     {new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                 </Text>
                 <ShowIcon iconCode={weather.weather[0].icon} size={100} />
-                <Text style={styles.temperature}>{weather.main.temp}°C</Text>
+                <Text style={styles.temperature}>{Math.round(weather.main.temp)}°C</Text>
                 <Text style={styles.description}>
                     {weather.weather[0].description.charAt(0).toUpperCase() +
                         weather.weather[0].description.slice(1)}
@@ -175,8 +175,10 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         position: 'absolute',
-        top: 50,
-        width: '90%',
+        top: 50,  // Légèrement en bas pour ne pas être trop collé en haut
+        left: '50%',  // Centrer horizontalement
+        transform: [{ translateX: -150 }],  // Décale le conteneur de 150px vers la gauche pour compenser la largeur de l'élément
+        width: '80%',  // Largeur de la barre de recherche (80% de l'écran)
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
